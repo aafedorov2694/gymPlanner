@@ -153,7 +153,7 @@ export default function Customer(){
                     </AgGridReact>
                     <Snackbar
                     open={open}
-                     autoHideDuration={3000}
+                     autoHideDuration={1500}
                      onClose={handleClose}
                      message={msg}
                       />

@@ -10,6 +10,10 @@ export default function Trainings(){
     const[training, setTraining] = useState([]);
     const [open, setOpen] = useState(false);
     const [msg, setMsg] = useState('List of trainings');
+    const handleClose = () => {
+        setOpen(false);
+    }
+   
    
     
     const gridRef = useRef();
@@ -20,13 +24,14 @@ export default function Trainings(){
          const columns = [
             {headerName: 'Date', field: 'date', sortable: true, filter: true, cellRenderer:(data) => {
                 return moment(data.value).format('dd.MM.yyyy HH:mm')
-            }, },            
-            {headerName: 'Duration', field: 'duration', sortable: true, filter: true,},
-            {headerName: 'Activity', field: 'activity', sortable: true, filter: true, },
+            }, width: 200},            
+            {headerName: 'Duration', field: 'duration', sortable: true, filter: true, width: 200},
+            {headerName: 'Activity', field: 'activity', sortable: true, filter: true, width: 150 },
             {
              headerName: '',
              field: 'links.0.href',
-             cellRendererFramework: params => <Button color="secondary" size="small" onClick={() => deleteTraining(params.value)}>Delete</Button>
+             cellRendererFramework: params => <Button color="secondary" size="small" onClick={() => deleteTraining(params.value)}>Delete</Button>,
+             width: 200
             }
     
         ]  
@@ -55,7 +60,7 @@ export default function Trainings(){
 
          
 
-          <div className = "ag-theme-material" style = {{height: '800px', width: '100%', }}>
+          <div className = "ag-theme-material" style = {{height: '800px', width: '48%', marginLeft: 350}}>
               <AgGridReact
               ref = {gridRef}
               onGridReady = {params => {
@@ -70,11 +75,11 @@ export default function Trainings(){
 
              </AgGridReact>
              <Snackbar
-             open={open}
-             autoHideDuration={3000}
-             
-             message={msg}
-        />
+               open={open}
+                autoHideDuration={1500}
+                onClose={handleClose}
+                message={msg}
+         />
         
         </div>
         
